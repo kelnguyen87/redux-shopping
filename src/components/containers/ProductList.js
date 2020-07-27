@@ -20,8 +20,9 @@ class ProductList extends Component {
         }
     }
 
-    componentWillMount() {
-        this.props.getProducts();
+    componentDidMount() {
+        if(this.props.products.length === 0) this.props.getProducts();
+        
     }
 
 
@@ -63,6 +64,8 @@ class ProductList extends Component {
             toast.info(toastMessage);
         }
        
+      
+
         if(this.props.products.length === 0){
             return <Loading />
         }else{
