@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { axiosInstance } from './axiosInstance';
 
 export function fetchProducts(id,page) {
@@ -24,10 +24,3 @@ export function fetchProductDetails(productUrl) {
 
 }
 
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}
