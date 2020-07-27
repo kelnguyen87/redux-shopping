@@ -13,6 +13,11 @@ import * as actions from "../../actions";
         const title = attributes.name;
         this.showToast(title);
         this.context.action(attributes);
+        setTimeout(() => {
+            this.props.showHideToastAction(
+                {isToastActive: false}
+            );
+        }, 5000)
     };
 
     showToast = (Title) => {

@@ -68,39 +68,39 @@ class ProductList extends Component {
 
         if(this.props.products.length === 0){
             return <Loading />
-        }else{
-            // Passing AddToCartContext as it might be used at any deep level child.
-            return (
-                <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-                    <div className="container">
-                        <h3 className="center">Product List</h3>
-
-                        <ProductListSummary currentPageItemStart={currentPageItemStart}
-                                            currentPageItemEnd={currentPageItemEnd} totalProductCount={totalProductCount}/>
-
-                        <div className="row">
-                            {productListMarkup}
-                        </div>
-                        <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
-                                    totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
-                                    handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                        />
-                    </div>
-
-
-                </AddToCartContext.Provider>
-            );
         }
+        // Passing AddToCartContext as it might be used at any deep level child.
+        return (
+            <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
+                <div className="container">
+                    <h3 className="center">Product List</h3>
+
+                    <ProductListSummary currentPageItemStart={currentPageItemStart}
+                                        currentPageItemEnd={currentPageItemEnd} totalProductCount={totalProductCount}/>
+
+                    <div className="row">
+                        {productListMarkup}
+                    </div>
+                    <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
+                                totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
+                                handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                </div>
+
+
+            </AddToCartContext.Provider>
+        );
+        
 
     }
 }
