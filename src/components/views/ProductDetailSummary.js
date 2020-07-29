@@ -31,6 +31,7 @@ export default ({product,cartItem}) => {
        }
   }
 
+  inventory(cartItem,product);
 
   return(
     <div className="col-6 col-sm-4">
@@ -50,7 +51,7 @@ export default ({product,cartItem}) => {
           </p>
 
           <p className="card-text"><b>Price:</b> ${product.Price}</p>
-          {inventory(cartItem,product)}
+
 
           <p className="card-text"><b>Stock:</b> {product.inventory > 0 ? product.inventory : 'Sold Out' }</p>
 

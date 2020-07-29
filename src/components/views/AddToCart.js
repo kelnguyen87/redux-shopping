@@ -9,10 +9,11 @@ class AddToCart extends Component {
 
     handleAddToCart = () => {
         highLightCartButton();
-        const { product} = this.props;
+        const {product} = this.props;
         this.context.action(product);
-        product.inventory -= 1;
-        //return product;
+
+        if (product.inventory < 1) product.inventory = 0;
+        else product.inventory -= 1;
 
     }
 
