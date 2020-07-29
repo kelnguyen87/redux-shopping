@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
 import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class ProductList extends Component {

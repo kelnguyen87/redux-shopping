@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import AddToCart from './AddToCart';
@@ -6,7 +7,10 @@ import ReadMore from '../helpers/ReadMore';
 
 export default ({product,cartItem}) => {
 
+
+
    const inventory = ( cartItem, product)=>{
+       console.log('not click');
        let doesItemExist = false;
        /*let itemFound = cartItem.find((element) => element.Id === product.Id);
        if(itemFound){
@@ -16,18 +20,15 @@ export default ({product,cartItem}) => {
        }*/
        //return product;
 
-       let itemFound = cartItem.filter((element) => {
+       const itemFound = cartItem.filter((element) => {
            if (element.Id === product.Id) {
-               //console.log(itemFound.quantity);
                product.inventory = product.inventory - element.quantity  ;
                doesItemExist = true;
            }
        });
-
        if (doesItemExist) {
            return itemFound;
        }
-
   }
 
 
@@ -51,9 +52,9 @@ export default ({product,cartItem}) => {
           <p className="card-text"><b>Price:</b> ${product.Price}</p>
           {inventory(cartItem,product)}
 
-          <p className="card-text"><b>Stock:</b> {product.inventory > 0 ? product.inventory : 'Out Stock' }</p>
+          <p className="card-text"><b>Stock:</b> {product.inventory > 0 ? product.inventory : 'Sold Out' }</p>
 
-          <AddToCart product={product} />
+          <AddToCart product={product} cartItem={cartItem} />
         </div>
       </div>
 

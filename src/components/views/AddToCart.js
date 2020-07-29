@@ -3,21 +3,22 @@ import {AddToCartContext} from '../../contexts/AddToCartContext';
 import {highLightCartButton} from '../../lib/cartLib';
 import {connect} from "react-redux";
 import * as actions from "../../actions";
-import {Link} from "react-router-dom";
 
 
- class AddToCart extends Component {
+class AddToCart extends Component {
 
     handleAddToCart = () => {
         highLightCartButton();
-        this.context.action(this.props.product);
-    };
+        const { product} = this.props;
+        this.context.action(product);
+        product.inventory -= 1;
+        //return product;
 
-
+    }
 
     render() {
-        const {product}= this.props;
-        if(product.inventory < 1) return (
+        const {product} = this.props;
+        if (product.inventory < 1) return (
             <button type="button" className="btn  btn-secondary"
                     disabled>Add to Cart
             </button>
