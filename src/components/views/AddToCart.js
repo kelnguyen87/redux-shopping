@@ -3,43 +3,29 @@ import {AddToCartContext} from '../../contexts/AddToCartContext';
 import {highLightCartButton} from '../../lib/cartLib';
 import {connect} from "react-redux";
 import * as actions from "../../actions";
+import {Link} from "react-router-dom";
 
 
  class AddToCart extends Component {
 
     handleAddToCart = () => {
         highLightCartButton();
-        const attributes = this.props.product;
-        const title = attributes.name;
-        this.showToast(title);
-        this.context.action(attributes);
-        setTimeout(() => {
-            this.props.showHideToastAction(
-                {isToastActive: false}
-            );
-        }, 5000)
+        this.context.action(this.props.product);
     };
 
-    showToast = (Title) => {
-        this.props.showHideToastAction(
-            {
-                isToastActive: true,
-                toastMessage: `Product ${Title} added successfully!!`,
-            }
-        );
 
-      
-    };
 
     render() {
+        const {product}= this.props;
+        if(product.inventory < 1) return (
+            <button type="button" className="btn  btn-secondary"
+                    disabled>Add to Cart
+            </button>
+        )
         return (
-            <div className="add-cart-container">
-
-                <button type="button" className="btn  btn-secondary"
-                        onClick={this.handleAddToCart}> Add to Cart
-                </button>
-
-            </div>
+            <button type="button" className="btn  btn-secondary"
+                    onClick={this.handleAddToCart}>Add to Cart
+            </button>
         );
     }
 }

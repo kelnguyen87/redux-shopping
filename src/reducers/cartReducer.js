@@ -5,8 +5,9 @@ const cartReducer = (state = [], action) => {
   switch (action.type) {
     case types.ADD_TO_CART:
       doesItemExist = false;
-      
+
       const newState = state.filter((item) => {
+        console.log(item);
         if (item.Id === action.payload.Id) {
           item.quantity += 1;
           doesItemExist = true;
@@ -16,7 +17,7 @@ const cartReducer = (state = [], action) => {
       if (doesItemExist) {
         return newState;
       }
-     
+
       return [...state, {...action.payload, quantity: 1}];
 
     case types.REMOVE_FROM_CART:

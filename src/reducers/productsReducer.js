@@ -6,7 +6,7 @@ const productsReducer = (state = {}, action) => {
       const allProductsSmart = action.payload;
       return { ...state, ...{ allProductsSmart } };
     case types.FETCH_PRODUCT_DETAILS:
-      const productDetails = action.payload;
+      const productDetails = action.payload[0];
       return { ...state, ...{ productDetails } };
     default:
       return state;

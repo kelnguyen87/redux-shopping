@@ -45,14 +45,14 @@ export default class Pagination extends Component {
   render() {
     if (this.props.totalProductCount > this.props.perPage) {
       return(
-        <ul className="pagination product-pagination mb-5">
+        <ul className="pagination product-pagination">
           {this.generatePageMarkUp()}
         </ul>
       );
     }
     else {
       return(
-        <ul className="pagination product-pagination mb-5">
+        <ul className="pagination product-pagination">
           <li className="page-item disabled"><button className="page-link">1</button></li>
         </ul>
       );

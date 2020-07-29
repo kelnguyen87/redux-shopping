@@ -10,7 +10,7 @@ let store;
 
 export default (initialState) => {
   const persistedState = loadState();
-  store = createStore(rootReducer, persistedState, applyMiddleware(logger, Async, stateValidator),window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
+  store = createStore(rootReducer, persistedState, applyMiddleware(logger, Async, stateValidator));
 
   store.subscribe(
       // Throttle: invokes a function at most once per every 1000 milliseconds.

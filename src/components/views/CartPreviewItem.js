@@ -14,12 +14,12 @@ export default (props) => {
                         <span className="previewCartItem-brand">
                             OFS
                         </span>
-                      <h5 className="previewCartItem-name">
+                      <h6 className="previewCartItem-name">
                           <a href="https://wikitheme1-sandbox.mybigcommerce.com/sample-chemex-coffeemaker-3-cup-consetetur-sadipscing-elitr/"
                              alt="[Sample] Chemex Coffeemaker 3 Cup  consetetur sadipscing elitr"
                              title="[Sample] Chemex Coffeemaker 3 Cup  consetetur sadipscing elitr">[Sample] Chemex
                               Coffeemaker 3 Cup consetetur sadipscing elitr</a>
-                      </h5>
+                      </h6>
 
                       <span className="previewCartItem-price">
                                 $49.50

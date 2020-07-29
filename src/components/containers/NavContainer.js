@@ -6,7 +6,7 @@ import NavBar from '../views/NavBar';
 import NavCartCount from '../views/NavCartCount';
 
 class NavContainer extends Component {
- 
+
   render() {
 
     return(
@@ -24,6 +24,7 @@ class NavContainer extends Component {
 
 const mapStateToProps = state => {
     const cartCount = countCart(state.cart);
+
     return {cart: state.cart, cartCount}
 }
 

@@ -10,7 +10,7 @@ export default (props) => {
 
       <th scope="row">{ props.counter }</th>
       <td>{ product.Title }</td>
-      <td>{ product.Price } VND</td>
+      <td>${ product.Price }</td>
       <td>
         <CartUpdateForm product={props.product}
           cartFormElement={props.cartFormElement}

@@ -5,7 +5,7 @@ export default (props) =>
     <tr>
       <th scope="col"></th>
       <th scope="col">Subtotal</th>
-      <th scope="col">{props.cartCount.cartTotal} VND</th>
+      <th scope="col">${props.cartCount.cartTotal}</th>
       <th scope="col">{props.cartCount.cartItemCount} items</th>
     </tr>
   </tbody>

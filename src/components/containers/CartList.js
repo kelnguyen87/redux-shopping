@@ -9,17 +9,16 @@ import { countCart } from '../../lib/cartLib';
 import * as actions from '../../actions';
 import CartItem from '../views/CartItem';
 import CartTotal from '../views/CartTotal';
+import { highLightCartButton } from '../../lib/cartLib';
 
 class CartList extends Component {
   constructor(props) {
     super(props);
 
-    //Object cart quantity
     const cartForm = {};
     this.props.cart.map((product, index) =>
       cartForm[product.Id] = {Id: product.Id, quantity: product.quantity}
     );
-
     this.state = {cartForm};
 
     this.tableRef = React.createRef();
@@ -66,7 +65,6 @@ class CartList extends Component {
   }
 
   render() {
-
     const cartItemsMarkUp = this.props.cart.map((product, index) =>
 
       <CartItem product={product} key={product.Id}
@@ -121,18 +119,19 @@ class CartList extends Component {
 
 const mapStateToProps = state => {
   const cartCount = countCart(state.cart);
-
   return {cart: state.cart, cartCount}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     removeFromCart: productId => {
+      highLightCartButton();
       return dispatch(actions.removeFromCartAction(productId))
     },
 
     updateCart: (e, cartForm) => {
       e.preventDefault();
+      highLightCartButton();
       return dispatch(actions.updateCartAction(cartForm));
     },
   };

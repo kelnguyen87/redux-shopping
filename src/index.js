@@ -20,7 +20,7 @@ ReactDOM.render(
         render={routeProps => (<BasePage {...routeProps} pageName="Home" />)} />
         <Route path="/shopping-cart"
                render={routeProps => (<BasePage {...routeProps} pageName="ShoppingCart" />)} />
-        <Route exact path="/product-detail/:productUrl"
+        <Route exact path="/product-detail/:productId"
                render={routeProps => (<BasePage {...routeProps} pageName="ProductDetailsPage" />)} />
         <Route path="*"
                render={routeProps => (<BasePage {...routeProps} pageName="PageNotFound" />)} />

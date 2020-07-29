@@ -5,7 +5,7 @@ export function addToCartAction(product) {
 
   return {
     type: types.ADD_TO_CART,
-    payload: { Id: product.code, Title: product.name, Price: product.price,ImageUrl: product.image[0],Description: product.description,productUrl: product.productUrl }
+    payload: { Id: product.Id, Title: product.Title, Price: product.Price,ImageUrl: product.ImageUrl,Description: product.Description }
   };
 }
 
@@ -27,14 +27,14 @@ export function getProducts() {
 
   return {
     type: types.FETCH_PRODUCTS,
-    payload: fetchProducts("2315cc02-5e3b-4ac1-b634-348db376bf71",1)
+    payload: fetchProducts()
   };
 }
 
-export function getProductDetails(productUrl) {
+export function getProductDetails(productId) {
   return {
     type: types.FETCH_PRODUCT_DETAILS,
-    payload: fetchProductDetails(productUrl)
+    payload: fetchProductDetails(productId)
   };
 }
 

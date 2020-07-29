@@ -10,6 +10,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/banana.jpg",
 			"OrgPrice": 7,
+			"inventory": 10,
 			"Price": 7
 		}, {
 			"Id": "2",
@@ -22,6 +23,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/cinnamonroll.jpg",
 			"OrgPrice": 5,
+			"inventory": 0,
 			"Price": 5
 		}, {
 			"Id": "3",
@@ -34,7 +36,8 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/apple.jpg",
 			"OrgPrice": 6,
-			"Price": 6
+		"inventory": 2,
+		"Price": 6
 		}, {
 			"Id": "4",
 			"Title": "Minced meat",
@@ -46,6 +49,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/mincedmeat.jpg",
 			"OrgPrice": 60,
+		"inventory": 10,
 			"Price": 60
 		}, {
 			"Id": "5",
@@ -58,6 +62,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/milk.jpg",
 			"OrgPrice": 10,
+		"inventory": 10,
 			"Price": 10
 		}, {
 			"Id": "6",
@@ -70,6 +75,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/organicmilk.jpg",
 			"OrgPrice": 12,
+		"inventory": 10,
 			"Price": 12
 		}, {
 			"Id": "7",
@@ -82,6 +88,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/greenapple.jpg",
 			"OrgPrice": 7,
+		"inventory": 10,
 			"Price": 7
 		}, {
 			"Id": "8",
@@ -94,6 +101,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/groundbeef.jpg",
 			"OrgPrice": 65,
+		"inventory": 10,
 			"Price": 65
 		}, {
 			"Id": "9",
@@ -106,6 +114,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/steak.jpg",
 			"OrgPrice": 100,
+		"inventory": 10,
 			"Price": 100
 		}, {
 			"Id": "10",
@@ -118,6 +127,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/chickenbreast.jpg",
 			"OrgPrice": 55,
+		"inventory": 10,
 			"Price": 55
 		}, {
 			"Id": "11",
@@ -130,6 +140,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/organicchickenbreast.jpg",
 			"OrgPrice": 65,
+		"inventory": 10,
 			"Price": 55,
 			"Campaigns":["Sale", "Organic sale"]
 		}, {
@@ -143,6 +154,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/wholechicken.jpg",
 			"OrgPrice": 40,
+		"inventory": 10,
 			"Price": 40
 		}, {
 			"Id": "13",
@@ -155,6 +167,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/flour.jpg",
 			"OrgPrice": 12,
+		"inventory": 10,
 			"Price": 12
 		}, {
 			"Id": "14",
@@ -168,6 +181,7 @@
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/powderedsugar.jpg",
 			"OrgPrice": 11,
 			"Price": 11,
+		"inventory": 10,
 			"IsNew": true
 		}, {
 			"Id": "15",
@@ -180,6 +194,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/sugar.jpg",
 			"OrgPrice": 14,
+		"inventory": 10,
 			"Price": 14
 		}, {
 			"Id": "16",
@@ -192,6 +207,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/oatmeal.jpg",
 			"OrgPrice": 12,
+		"inventory": 10,
 			"Price": 12
 		}, {
 			"Id": "17",
@@ -204,6 +220,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/orange.jpg",
 			"OrgPrice": 5,
+		"inventory": 10,
 			"Price": 5
 		}, {
 			"Id": "18",
@@ -216,6 +233,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/yoghurt.jpg",
 			"OrgPrice": 14,
+		"inventory": 10,
 			"Price": 14
 		}, {
 			"Id": "19",
@@ -228,6 +246,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/syrup.jpg",
 			"OrgPrice": 24,
+		"inventory": 10,
 			"Price": 24
 		}, {
 			"Id": "20",
@@ -240,6 +259,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/maplesyrup.jpg",
 			"OrgPrice": 34,
+		"inventory": 10,
 			"Price": 34
 		}, {
 			"Id": "21",
@@ -253,6 +273,7 @@
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/coffee.jpg",
 			"Campaigns":["Sale"],
 			"OrgPrice": 46,
+		"inventory": 10,
 			"Price": 36
 		}, {
 			"Id": "22",
@@ -265,6 +286,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/mutton.jpg",
 			"OrgPrice": 76,
+		"inventory": 10,
 			"Price": 76
 		}, {
 			"Id": "23",
@@ -277,6 +299,7 @@
 			"Organic": false,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/beer.jpg",
 			"OrgPrice": 16,
+		"inventory": 10,
 			"Price": 16
 		}, {
 			"Id": "24",
@@ -289,6 +312,7 @@
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/organicbeer.jpg",
 			"OrgPrice": 19,
+		"inventory": 10,
 			"Price": 19,
 			"IsNew": true
 		}

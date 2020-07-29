@@ -8,7 +8,6 @@ import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loading from "../helpers/Loading";
 
 class ProductList extends Component {
     constructor(props) {
@@ -16,15 +15,13 @@ class ProductList extends Component {
         this.state = {
             products: [],
             currentPage: 1,
-            perPage: 12
+            perPage: 9
         }
     }
 
-    componentDidMount() {
-        if(this.props.products.length === 0) this.props.getProducts();
-        
+    componentWillMount() {
+        this.props.getProducts();
     }
-
 
     getPagedData = () => {
         const currentPageItemStart = (this.state.currentPage - 1) * this.state.perPage;
@@ -51,24 +48,15 @@ class ProductList extends Component {
 
     render() {
         const totalProductCount = this.props.products.length;
-        const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
+        const {cart} = this.props;
 
+        const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
         const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
 
         const productListMarkup = currentPageProducts.map(product =>
-            <ProductDetailSummary product={product} key={product.productId}/>
+            <ProductDetailSummary product={product} key={product.Id} cartItem={cart} />
         );
-        const {isToastActive, toastMessage} = this.props;
 
-        if (isToastActive) {
-            toast.info(toastMessage);
-        }
-       
-      
-
-        if(this.props.products.length === 0){
-            return <Loading />
-        }
         // Passing AddToCartContext as it might be used at any deep level child.
         return (
             <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
@@ -84,24 +72,12 @@ class ProductList extends Component {
                     <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
                                 totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
                                 handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
+
                 </div>
 
 
             </AddToCartContext.Provider>
         );
-        
-
     }
 }
 
@@ -111,6 +87,7 @@ const mapStateToProps = state => {
     } else {
         return {
             products: state.products.allProductsSmart,
+            cart: state.cart,
             isToastActive: state.toast.isToastActive,
             toastMessage: state.toast.toastMessage
         }

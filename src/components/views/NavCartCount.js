@@ -13,14 +13,14 @@ export default ({cartItems,cartCount}) => {
         return (
             <li className="previewCartItem" key={product.Id} >
                 <div className="previewCartItem-image">
-                    <Link to={"/product-detail/" + product.productUrl}>
+                    <Link to={"/product-detail/" + product.Id}>
                         <img className="card-img" alt={product.Title} src={product.ImageUrl} />
                     </Link>
                 </div>
                 <div className="previewCartItem-content">
-                    <h6 className="previewCartItem-name">
-                        <Link to={"/product-detail/" + product.productUrl}>{product.Title}</Link>
-                    </h6>
+                    <h5 className="previewCartItem-name">
+                        <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
+                    </h5>
                     <p className="previewCartItem-desc">
                         <ReadMore text={product.Description} length="50" />
                     </p>
@@ -38,8 +38,8 @@ export default ({cartItems,cartCount}) => {
     return(
     <div className="dropdown">
 
-      <Link id="nav-view-cart-link" onClick={ toggleList} to={"#"} className="btn btn-secondary">
-        Cart (items { cartCount.cartItemCount }) - { cartCount.cartTotal } VND
+      <Link id="nav-view-cart-link" onClick={ toggleList} to={"/"} className="btn btn-secondary">
+        Cart (items { cartCount.cartItemCount }) - ${ cartCount.cartTotal }
       </Link>
         {listOpen && (
             <div className="dropdown-menu show dropdown-previewcart">
