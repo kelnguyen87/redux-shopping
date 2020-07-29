@@ -6,9 +6,28 @@ import ReadMore from '../helpers/ReadMore';
 
 export default ({product,cartItem}) => {
 
-   const inventory = ( cartItem, productID)=>{
-    console.log();
-    if(cartItem[productID] !== undefined) console.log(product.Id,cartItem[ product.Id]);
+   const inventory = ( cartItem, product)=>{
+       let doesItemExist = false;
+       /*let itemFound = cartItem.find((element) => element.Id === product.Id);
+       if(itemFound){
+           console.log(itemFound);
+           product.inventory -= itemFound.quantity  ;
+           doesItemExist = true;
+       }*/
+       //return product;
+
+       let itemFound = cartItem.filter((element) => {
+           if (element.Id === product.Id) {
+               //console.log(itemFound.quantity);
+               product.inventory = product.inventory - element.quantity  ;
+               doesItemExist = true;
+           }
+       });
+
+       if (doesItemExist) {
+           return itemFound;
+       }
+
   }
 
 
@@ -30,7 +49,7 @@ export default ({product,cartItem}) => {
           </p>
 
           <p className="card-text"><b>Price:</b> ${product.Price}</p>
-          {inventory(cartItem,product.Id)}
+          {inventory(cartItem,product)}
 
           <p className="card-text"><b>Stock:</b> {product.inventory > 0 ? product.inventory : 'Out Stock' }</p>
 

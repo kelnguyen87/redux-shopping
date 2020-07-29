@@ -19,7 +19,7 @@ class ProductList extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.getProducts();
     }
 

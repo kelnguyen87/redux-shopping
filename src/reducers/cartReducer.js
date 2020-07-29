@@ -7,13 +7,14 @@ const cartReducer = (state = [], action) => {
       doesItemExist = false;
 
       const newState = state.filter((item) => {
-        console.log(item);
+
         if (item.Id === action.payload.Id) {
           item.quantity += 1;
           doesItemExist = true;
         }
         return item;
       });
+
       if (doesItemExist) {
         return newState;
       }
