@@ -35,7 +35,27 @@ code {
 img {
   max-width: 100%;
 }
+nav.navbar{
+  ul.navbar-nav{
+    .nav-link{
+      padding-right: 1rem;
+      padding-left: 1rem;
+      border-radius: 3px;
+      margin-right: 10px;
+      &.active{
+        background-color: #E40046;
+        color: #FFF;
+      }
+    }
+  }
+}
 
+.card-body{
+  padding: 0.8rem;
+  .card-text{
+    margin-bottom: 5px;
+  }
+}
 .previewCart-emty{
   width: 100%;
   margin: 0;

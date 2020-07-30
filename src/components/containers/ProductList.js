@@ -14,11 +14,13 @@ class ProductList extends Component {
         this.state = {
             products: [],
             currentPage: 1,
-            perPage: 9
+            perPage: 12
         }
+
     }
 
     componentDidMount() {
+
         this.props.getProducts();
     }
 
@@ -46,6 +48,7 @@ class ProductList extends Component {
     }
 
     render() {
+        console.log(this.props.getcategory);
         const totalProductCount = this.props.products.length;
         const {cart} = this.props;
 
@@ -59,11 +62,16 @@ class ProductList extends Component {
         // Passing AddToCartContext as it might be used at any deep level child.
         return (
             <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-                <div className="container">
-                    <h3 className="center">Product List</h3>
 
-                    <ProductListSummary currentPageItemStart={currentPageItemStart}
-                                        currentPageItemEnd={currentPageItemEnd} totalProductCount={totalProductCount}/>
+                    <div className="row justify-content-between mb-3">
+                        <div className={'col-sm-6'}>
+                            <h3 className="center">Product List</h3>
+                        </div>
+                        <div className={'col-sm-6 text-right'}>
+                            <ProductListSummary currentPageItemStart={currentPageItemStart}
+                                                currentPageItemEnd={currentPageItemEnd} totalProductCount={totalProductCount}/>
+                        </div>
+                    </div>
 
                     <div className="row">
                         {productListMarkup}
@@ -72,7 +80,7 @@ class ProductList extends Component {
                                 totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
                                 handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
 
-                </div>
+
 
 
             </AddToCartContext.Provider>
@@ -81,11 +89,11 @@ class ProductList extends Component {
 }
 
 const mapStateToProps = state => {
-    if (typeof state.products.allProductsSmart === 'undefined') {
+    if (typeof state.products.allProducts === 'undefined') {
         return {products: []};
     } else {
         return {
-            products: state.products.allProductsSmart,
+            products: state.products.allProducts,
             cart: state.cart,
             isToastActive: state.toast.isToastActive,
             toastMessage: state.toast.toastMessage

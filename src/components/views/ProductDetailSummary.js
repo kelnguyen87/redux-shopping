@@ -10,7 +10,6 @@ export default ({product,cartItem}) => {
 
 
    const inventory = ( cartItem, product)=>{
-       console.log('not click');
        let doesItemExist = false;
        /*let itemFound = cartItem.find((element) => element.Id === product.Id);
        if(itemFound){
@@ -34,7 +33,7 @@ export default ({product,cartItem}) => {
   inventory(cartItem,product);
 
   return(
-    <div className="col-6 col-sm-4">
+    <div className="col-6 col-sm-3">
 
       <div className="product-box card mb-4 shadow-sm">
         <div className="bd-placeholder-img">
@@ -43,12 +42,10 @@ export default ({product,cartItem}) => {
           </Link>
         </div>
         <div className="card-body">
-          <h5 className="card-title">
+          <h6 className="card-title">
             <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
-          </h5>
-          <p className="card-text description">
-            <ReadMore text={product.Description} length="100" />
-          </p>
+          </h6>
+
 
           <p className="card-text"><b>Price:</b> ${product.Price}</p>
 

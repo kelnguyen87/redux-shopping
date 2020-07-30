@@ -5,7 +5,7 @@ export const productsStub =
     {
       "Id": "1",
       "Title": "Banana",
-      "Category": "Fruit",
+      "Category": "women",
       "SubCategory": "Musaceae",
       "Manufacturer": "The banana company",
       "Contents": "Banana",
@@ -18,7 +18,7 @@ export const productsStub =
     {
       "Id": "2",
       "Title": "Cinnamon roll",
-      "Category": "Bakery",
+      "Category": "women",
       "SubCategory": "Cookies and sweets",
       "Manufacturer": "Awesome bakery",
       "Contents": "Wheat flour,Cinnamon,Bunnies",
@@ -30,7 +30,7 @@ export const productsStub =
     }, {
       "Id": "3",
       "Title": "Apple",
-      "Category": "Fruit",
+      "Category": "women",
       "SubCategory": "Rosaceae",
       "Manufacturer": "Fruits n Veggies",
       "Contents": "Apple",

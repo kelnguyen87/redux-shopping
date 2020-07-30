@@ -18,6 +18,14 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/"
         render={routeProps => (<BasePage {...routeProps} pageName="Home" />)} />
+        <Route path="/men"
+               render={routeProps => (<BasePage {...routeProps} pageName="men" />)} />
+        <Route path="/women"
+               render={routeProps => (<BasePage {...routeProps} pageName="women" />)} />
+        <Route path="/kids"
+               render={routeProps => (<BasePage {...routeProps} pageName="kids" />)} />
+        <Route path="/sale"
+               render={routeProps => (<BasePage {...routeProps} pageName="sale" />)} />
         <Route path="/shopping-cart"
                render={routeProps => (<BasePage {...routeProps} pageName="ShoppingCart" />)} />
         <Route exact path="/product-detail/:productId"

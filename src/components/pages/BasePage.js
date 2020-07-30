@@ -5,6 +5,10 @@ import ProductDetailsPage from './ProductDetailsPage';
 import PageNotFound from '../views/PageNotFound';
 import Header from '../views/Header';
 import NavContainer from '../containers/NavContainer';
+import Men from "./Men";
+import Women from "./Women";
+import Kids from "./Kids";
+import Sale from "./Sale";
 
 export default class BasePage extends Component {
   render() {
@@ -13,7 +17,18 @@ export default class BasePage extends Component {
       case "Home":
         componentRendered = <Home {...this.props}/>;
         break;
-
+      case "men":
+        componentRendered = <Men {...this.props}/>;
+        break;
+      case "women":
+        componentRendered = <Women {...this.props}/>;
+        break;
+      case "kids":
+        componentRendered = <Kids {...this.props}/>;
+        break;
+      case "sale":
+        componentRendered = <Sale {...this.props}/>;
+        break;
       case "ProductDetailsPage":
         componentRendered = <ProductDetailsPage {...this.props}/>;
         break;

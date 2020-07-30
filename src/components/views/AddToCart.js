@@ -20,12 +20,12 @@ class AddToCart extends Component {
     render() {
         const {product} = this.props;
         if (product.inventory < 1) return (
-            <button type="button" className="btn  btn-secondary"
+            <button type="button" className="btn  btn-secondary btn-block"
                     disabled>Add to Cart
             </button>
         )
         return (
-            <button type="button" className="btn  btn-secondary"
+            <button type="button" className="btn  btn-secondary btn-block"
                     onClick={this.handleAddToCart}>Add to Cart
             </button>
         );
@@ -35,11 +35,11 @@ class AddToCart extends Component {
 AddToCart.contextType = AddToCartContext;
 
 const mapStateToProps = state => {
-    if (typeof state.products.allProductsSmart === 'undefined') {
+    if (typeof state.products.allProducts === 'undefined') {
         return {products: []};
     } else {
         return {
-            products: state.products.allProductsSmart,
+            products: state.products.allProducts,
             isToastActive: state.toast.isToastActive,
             toastMessage: state.toast.toastMessage
         }
