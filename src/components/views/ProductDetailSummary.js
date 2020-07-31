@@ -7,8 +7,6 @@ import ReadMore from '../helpers/ReadMore';
 
 export default ({product,cartItem}) => {
 
-
-
    const inventory = ( cartItem, product)=>{
        let doesItemExist = false;
        /*let itemFound = cartItem.find((element) => element.Id === product.Id);
@@ -30,7 +28,16 @@ export default ({product,cartItem}) => {
        }
   }
 
-  inventory(cartItem,product);
+  const productDiscount = (product) =>{
+       if(product.sale){
+           return (
+               <span className="shop-card-discount">
+                   {Math.round(((product.discount_price - product.Price)* 100)/product.Price )}% Off
+               </span>
+           );
+       }
+  }
+  //inventory(cartItem,product);
 
   return(
     <div className="col-6 col-sm-3">
@@ -40,12 +47,12 @@ export default ({product,cartItem}) => {
           <Link to={"/product-detail/" + product.Id}>
             <img className="card-img-top" alt={product.Title} src={product.ImageUrl} />
           </Link>
+             {productDiscount(product)}
         </div>
         <div className="card-body">
           <h6 className="card-title">
             <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
           </h6>
-
 
           <p className="card-text"><b>Price:</b> ${product.Price}</p>
 

@@ -9,11 +9,11 @@
 			"Description": "The banana is an edible fruit, botanically a berry, produced by several kinds of large herbaceous flowering plants in the genus Musa. In some countries, bananas used for cooking may be called plantains. The fruit is variable in size, color and firmness, but is usually elongated and curved, with soft flesh rich in starch covered with a rind which may be green, yellow, red, purple, or brown when ripe. The fruits grow in clusters hanging from the top of the plant. Almost all modern edible parthenocarpic (seedless) bananas come from two wild species - Musa acuminata and Musa balbisiana. The scientific names of most cultivated bananas are Musa acuminata, Musa balbisiana, and Musa x paradisiaca for the hybrid Musa acuminata x M. balbisiana, depending on their genomic constitution. The old scientific name Musa sapientum is no longer used. It is also yellow.",
 			"Organic": true,
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/banana.jpg",
-			"OrgPrice": 700,
-			"discount_price": 1000,
+			"OrgPrice": 10,
+			"discount_price": 7,
 			"sale": true,
 			"inventory": 10,
-			"Price": 7
+			"Price": 10
 		}, {
 			"Id": "2",
 			"Title": "Cinnamon roll",
@@ -26,9 +26,9 @@
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/cinnamonroll.jpg",
 			"OrgPrice": 5,
 			"sale": true,
-		    "discount_price": 10,
+		    "discount_price": 30,
 			"inventory": 0,
-			"Price": 5
+			"Price": 50
 		}, {
 			"Id": "3",
 			"Title": "Apple",
@@ -43,7 +43,7 @@
 			"OrgPrice": 6,
 		"discount_price": 10,
 		"inventory": 2,
-		"Price": 6
+		"Price": 20
 		}, {
 			"Id": "4",
 			"Title": "Minced meat",
@@ -58,7 +58,7 @@
 		"sale": true,
 		"discount_price": 80,
 		"inventory": 10,
-			"Price": 60
+			"Price": 100
 		}, {
 			"Id": "5",
 			"Title": "Milk",
@@ -71,9 +71,9 @@
 			"ImageUrl": "http://www.loop54.com/hubfs/demo_images/milk.jpg",
 			"OrgPrice": 10,
 		"sale": true,
-		"discount_price": 60,
+		"discount_price": 90,
 		"inventory": 10,
-			"Price": 10
+			"Price": 100
 		}, {
 			"Id": "6",
 			"Title": "Organic Milk",
@@ -88,7 +88,7 @@
 		"sale": true,
 		"discount_price": 30,
 		"inventory": 10,
-			"Price": 12
+			"Price": 120
 		}, {
 			"Id": "7",
 			"Title": "Organic Apple",
@@ -103,7 +103,7 @@
 		"sale": true,
 		"discount_price": 10,
 		"inventory": 10,
-			"Price": 7
+			"Price": 20
 		}, {
 			"Id": "8",
 			"Title": "Ground beef",
@@ -118,7 +118,7 @@
 		"sale": true,
 		"discount_price": 100,
 		"inventory": 10,
-			"Price": 65
+			"Price": 120
 		}, {
 			"Id": "9",
 			"Title": "Steak",
