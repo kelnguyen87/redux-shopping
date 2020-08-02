@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
 import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
-import 'react-toastify/dist/ReactToastify.css';
 
 class ProductList extends Component {
     constructor(props) {
@@ -48,7 +47,7 @@ class ProductList extends Component {
     }
 
     render() {
-        console.log(this.props.getcategory);
+
         const totalProductCount = this.props.products.length;
         const {cart} = this.props;
 
@@ -94,9 +93,7 @@ const mapStateToProps = state => {
     } else {
         return {
             products: state.products.allProducts,
-            cart: state.cart,
-            isToastActive: state.toast.isToastActive,
-            toastMessage: state.toast.toastMessage
+            cart: state.cart
         }
     }
 }

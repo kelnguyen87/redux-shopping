@@ -11,21 +11,29 @@ export function fetchProducts() {
 
 }
 
+export function fetchProductDetails(productUrl) {
+
+    return axios.get("/data/ProductData.json")
+        .then(response => {
+            const ProductDetail = response.data.Products.filter(product => {
+                return product.Id == productUrl
+            });
+            return ProductDetail;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+}
+/*
 export function fetchProductDetails(id) {
-  return fetch("/data/ProductData.json")
+  return axios.get("/data/ProductData.json")
     .then(handleErrors)
     .then(res => res.json())
     .then(json => {
-      return json.Products.filter(product => {
-        if (product.Id === id) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      });
+      return json.Products.filter(product => product.Id === id);
     });
-}
+}*/
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {

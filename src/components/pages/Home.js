@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
 import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
-import 'react-toastify/dist/ReactToastify.css';
 
 class Home extends Component {
     constructor(props) {
@@ -53,7 +52,7 @@ class Home extends Component {
         const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
 
         const productListMarkup = currentPageProducts.map(product =>
-            <ProductDetailSummary product={product} key={product.Id} cartItem={cart}/>
+            <ProductDetailSummary product={product} key={product.Id}/>
         );
 
         // Passing AddToCartContext as it might be used at any deep level child.
@@ -92,9 +91,7 @@ const mapStateToProps = state => {
     } else {
         return {
             products: state.products.allProducts,
-            cart: state.cart,
-            isToastActive: state.toast.isToastActive,
-            toastMessage: state.toast.toastMessage
+            cart: state.cart.cartItem
         }
     }
 }

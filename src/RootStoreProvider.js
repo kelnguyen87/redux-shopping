@@ -15,3 +15,4 @@ export default ({ children, initialState = {}, env = '' }) => {
     </Provider>
   );
 }
+

@@ -6,7 +6,6 @@ import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
 import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
-import 'react-toastify/dist/ReactToastify.css';
 
 class Men extends Component {
   constructor(props) {
@@ -92,9 +91,7 @@ const mapStateToProps = state => {
   } else {
     return {
       products: state.products.allProducts.filter(product => product.Category === 'men'),
-      cart: state.cart,
-      isToastActive: state.toast.isToastActive,
-      toastMessage: state.toast.toastMessage
+      cart: state.cart
     }
   }
 }

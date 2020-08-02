@@ -12,9 +12,6 @@ class AddToCart extends Component {
         const {product} = this.props;
         this.context.action(product);
 
-        if (product.inventory < 1) product.inventory = 0;
-        else product.inventory -= 1;
-
     }
 
     render() {
@@ -39,9 +36,7 @@ const mapStateToProps = state => {
         return {products: []};
     } else {
         return {
-            products: state.products.allProducts,
-            isToastActive: state.toast.isToastActive,
-            toastMessage: state.toast.toastMessage
+            products: state.products.allProducts
         }
     }
 }

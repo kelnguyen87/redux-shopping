@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 
-import ReadMore from "../helpers/ReadMore";
 
-export default ({cartItems,cartCount}) => {
-    const [listOpen, setListOpen] = useState(false);
+export default (props) => {
+    const {cartItems,cartCount,cartTotal} = props;
+   // console.log(props);
+    const [listStatus, setlistStatus] = useState(false);
     const toggleList = () => {
-        setListOpen(!listOpen);
+        setlistStatus(!listStatus);
     }
+    //console.log(cartItems);
 
     const cartItemsMarkUp = cartItems.map((product, index) =>{
         return (
@@ -21,10 +23,7 @@ export default ({cartItems,cartCount}) => {
                     <h5 className="previewCartItem-name">
                         <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
                     </h5>
-                    <p className="previewCartItem-desc">
-                        <ReadMore text={product.Description} length="50" />
-                    </p>
-
+                    <p className="previewCartItem-price">Quantity: {product.Count}</p>
                     <p className="previewCartItem-price"><b>Price:</b> ${product.Price}</p>
                 </div>
 
@@ -34,20 +33,19 @@ export default ({cartItems,cartCount}) => {
     });
 
 
-
     return(
     <div className="dropdown">
 
-      <Link id="nav-view-cart-link" onClick={ toggleList} to={"/"} className="btn btn-secondary">
-        Cart (items { cartCount.cartItemCount }) - ${ cartCount.cartTotal }
+      <Link id="nav-view-cart-link" onClick={ toggleList} to={'/'} className="btn btn-secondary">
+        Cart (items { cartTotal }) - ${ cartCount.cartTotal }
       </Link>
-        {listOpen && (
+        {listStatus && (
             <div className="dropdown-menu show dropdown-previewcart">
                 {cartItems.length ? (
                     <ul className="previewCart">
                         {cartItemsMarkUp}
                         <li className="previewCartItem">
-                            <Link  to={"/shopping-cart"} onClick={ () => setListOpen(false)}  className="btn btn-secondary btn-block">
+                            <Link  to={"/shopping-cart"} onClick={ () => setlistStatus(false)}  className="btn btn-secondary btn-block">
                                 My cart
                             </Link>
 

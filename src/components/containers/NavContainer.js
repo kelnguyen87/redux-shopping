@@ -8,12 +8,11 @@ import NavCartCount from '../views/NavCartCount';
 class NavContainer extends Component {
 
   render() {
-
     return(
       <nav className="navbar navbar-expand-md bg-dark navbar-dark mb-5">
           <div className="container">
               <NavBar />
-              <NavCartCount cartItems={this.props.cart}  cartCount={this.props.cartCount} />
+              <NavCartCount cartItems={this.props.cart} cartTotal={this.props.cartTotal}  cartCount={this.props.cartCount} />
           </div>
 
       </nav>
@@ -21,11 +20,9 @@ class NavContainer extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
-    const cartCount = countCart(state.cart);
-
-    return {cart: state.cart, cartCount}
+    const cartCount = countCart(state.cart.cartItem);
+    return {cart: state.cart.cartItem,cartTotal: state.cart.cartTotal, cartCount}
 }
 
 export default connect(mapStateToProps)(NavContainer);

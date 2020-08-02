@@ -5,7 +5,11 @@ export function addToCartAction(product) {
 
   return {
     type: types.ADD_TO_CART,
-    payload: { Id: product.Id, Title: product.Title, Price: product.Price,ImageUrl: product.ImageUrl,Description: product.Description }
+    productId: product.Id,
+    Title: product.Title,
+    Price: product.Price,
+    ImageUrl: product.ImageUrl,
+    Quantity: product.inventory
   };
 }
 
@@ -37,9 +41,8 @@ export function getProductDetails(productId) {
   };
 }
 
-export function showHideToastAction  (payload)  {
-  return{
-    type: 'TOAST',
-    payload
+export const closeMaxProductModal = () => {
+  return {
+    type: types.CLOSE_MAX_PRODUCT_MODAL
   }
 };

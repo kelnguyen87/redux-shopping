@@ -9,8 +9,11 @@ import Men from "./Men";
 import Women from "./Women";
 import Kids from "./Kids";
 import Sale from "./Sale";
+import {connect} from "react-redux";
+import {closeMaxProductModal} from "../../actions";
+import Modal from '../../components/UI/Modal/Modal';
 
-export default class BasePage extends Component {
+ class BasePage extends Component {
   render() {
     let componentRendered = '';
     switch (this.props.pageName) {
@@ -45,7 +48,33 @@ export default class BasePage extends Component {
         <NavContainer />
         {componentRendered}
 
+        {
+
+          this.props.showModalProp &&
+          <Modal closeModalClick={this.props.closeModalProp} showModal={this.props.showModalProp}>
+            {this.props.modalMessageProp}
+          </Modal>
+
+        }
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+    return{
+      storeCartItemsCount: state.cart.cartTotal,
+      showModalProp: state.cart.productMaxShowModal,
+      modalMessageProp: state.cart.modalMessage,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModalProp: () => dispatch(closeMaxProductModal())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BasePage);
+
