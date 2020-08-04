@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 export const countCart = cart => {
+
   const cartItemCount = cart.map(item => item.Count).reduce((total, num) => (total + num), 0);
   const cartTotal = cart.map(item => item.Price * item.Count).reduce((total, num) => (total + num), 0);
 

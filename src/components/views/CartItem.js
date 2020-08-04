@@ -5,10 +5,13 @@ export default (props) => {
     const {product} = props;
 
   return(
-    <tr className={"row-" + product.Id}
-      onClick={e => props.handleClickRow(product.Id)}>
+    <tr className={"row-" + product.Id}>
 
-      <th scope="row">{ props.counter }</th>
+      <th scope="row">
+          <img className={'shop-cart-image'} width={'60px'}
+               src={product.ImageUrl}
+               alt={product.Title}/>
+      </th>
       <td>{ product.Title }</td>
       <td>${ product.Price }</td>
       <td>

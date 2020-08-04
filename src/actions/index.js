@@ -13,12 +13,19 @@ export function addToCartAction(product) {
   };
 }
 
-export function removeFromCartAction(productId) {
+export function removeFromCartAction(productId, count) {
   return {
     type: types.REMOVE_FROM_CART,
-    productId: productId
+    productId: productId,
+    productCount: count
   };
 }
+
+export const clearCart = () => {
+  return {
+    type: types.CLEAR_CART
+  }
+};
 
 export function updateCartAction(payload) {
   return {

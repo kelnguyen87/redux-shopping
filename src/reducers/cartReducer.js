@@ -3,6 +3,7 @@ import * as types from '../actions/action-types';
 const initialState = {
     cartItem: [],
     cartTotal: 0,
+    vat: 16, //vat in percentage
     productMaxShowModal: false,
     modalMessage: null
 }
@@ -55,14 +56,19 @@ const cartReducer = (state = initialState, action) => {
 
 
         case types.REMOVE_FROM_CART:
-            const newCartState = state.filter((item) => {
-                if (item.Id === action.productId) {
-                    return false;
-                }
-                return true;
-            });
-            return newCartState;
+             newCartItem = state.cartItem.find( product => product.Id !== action.productId);
 
+            return {
+                ...state,
+                cartTotal: state.cartTotal - action.productCount,
+                cartItem: newCartItem
+            }
+        case  types.CLEAR_CART:
+            return{
+                ...state,
+                cartTotal: 0,
+                cartItem: []
+            }
         case types.UPDATE_CART:
             const cartFormArr = Object.keys(action.payload).map((key, index) => {
                 return action.payload[key];
