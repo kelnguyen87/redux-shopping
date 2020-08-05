@@ -52,7 +52,7 @@ class Home extends Component {
         const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
 
         const productListMarkup = currentPageProducts.map(product =>
-            <ProductDetailSummary product={product} key={product.Id}/>
+            <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
         );
 
         // Passing AddToCartContext as it might be used at any deep level child.
@@ -86,11 +86,13 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.cart);
     if (typeof state.products.allProducts === 'undefined') {
         return {products: []};
     } else {
         return {
             products: state.products.allProducts,
+            usedCurrencyProp: state.cart.usedCurrency,
             cart: state.cart.cartItem
         }
     }

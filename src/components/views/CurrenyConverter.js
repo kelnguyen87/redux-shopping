@@ -8,24 +8,28 @@ class CurrenyConverter extends Component {
     };
 
     render() {
-        console.log(this.props);
+
         return (
-            <div className="form-group">
-                {this.props.showLabel ? <label><h5>Convert Currency</h5></label> : null}
+            <div className="form-group row">
+                {this.props.showLabel ? <label  className="col-sm-4 col-form-label"> Currency</label> : null}
+                <div className="col-sm-8">
                 <select className={'form-control'}
                     value={Object.keys(this.props.usedCurrencyProp)[0]}
                     onChange={this.currencyChangeHandler}
                 >
                     { Object.keys(this.props.exchangeRatesProps.rates).map((rateName, index) => (
+
                              <option
                                 key={index}
                                 value={this.props.exchangeRatesProps.rates[rateName]}
                             >
                                 {rateName}
+
                             </option>
                         ))
                     }
                 </select>
+                </div>
             </div>
         );
     }
@@ -33,8 +37,8 @@ class CurrenyConverter extends Component {
 
 const mapStateToProps = state => {
     return {
-        exchangeRatesProps: state.exchangeRates,
-        usedCurrencyProp:state.usedCurrency
+        exchangeRatesProps: state.cart.exchangeRates,
+        usedCurrencyProp:state.cart.usedCurrency
     }
 }
 

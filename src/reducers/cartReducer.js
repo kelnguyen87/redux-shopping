@@ -132,6 +132,7 @@ const cartReducer = (state = initialState, action) => {
                 ...state, usedCurrency: currencyNameSearch ? currencyObj : this.state.usedCurrency
             }
         default:
+
             return state;
     }
 }
