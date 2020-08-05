@@ -15,7 +15,7 @@ const initialState = {
         "rates": {
             "USD": 1,
             "EUR": 0.8499787505,
-            "VND": 23176.50
+            "VND": 23000.00
         }
     },
     // overkill but doing it for fun
@@ -113,9 +113,9 @@ const cartReducer = (state = initialState, action) => {
                 ...state, productMaxShowModal: !state.productMaxShowModal
             }
         case types.CHANGE_CURRENCY:
-            let currencyName= null,
-                currencyValue= null,
-                currencyObj = [];
+            let    currencyName= null;
+            let    currencyValue= null;
+            let    currencyObj = {};
 
             let currencyNameSearch = Object.keys(state.exchangeRates.rates).filter(rate => rate === action.currencyName );
 
@@ -128,8 +128,9 @@ const cartReducer = (state = initialState, action) => {
 
             }
             return {
+                ...state,
                 // just in case the currency is not found
-                ...state, usedCurrency: currencyNameSearch ? currencyObj : this.state.usedCurrency
+                usedCurrency: currencyNameSearch ? currencyObj : this.state.usedCurrency
             }
         default:
 

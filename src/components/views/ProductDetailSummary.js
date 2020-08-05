@@ -4,12 +4,10 @@ import AddToCart from './AddToCart';
 import ReadMore from '../helpers/ReadMore';
 
 export default ({product, currency}) => {
-
-
     let currencyKeys = Object.keys(currency);
     let currencyValue = currency[currencyKeys[0]];
     let currencyName = currency[currencyKeys[1]];
-    console.log(currencyKeys,currencyValue,currencyName);
+
     const productDiscount = (product) => {
         if (product.sale) {
             return (
@@ -19,8 +17,31 @@ export default ({product, currency}) => {
             );
         }
     }
-    //inventory(cartItem,product);
 
+    const productPrice=(product)=>{
+        if (product.sale) {
+            return (
+                <>
+                    <span className={'price'}>
+                             {currencyName === 'đ' ?
+                                 (`${Math.round(product.discount_price * currencyValue).toLocaleString()}${currencyName}`) :
+                                 (`${currencyName}${Math.round(product.discount_price * currencyValue).toLocaleString()} `)}
+                    </span>
+                    <span className={'price price--noSale'}>
+                            {currencyName === 'đ' ?
+                                (`${Math.round(product.Price * currencyValue).toLocaleString()}${currencyName}`) :
+                                (`${currencyName}${Math.round(product.Price * currencyValue).toLocaleString()} `)}
+                        </span>
+                </>
+            );
+        }else{
+           return  <span className={'price '}>
+                            {currencyName === 'đ' ?
+                                (`${Math.round(product.Price * currencyValue).toLocaleString()}${currencyName}`) :
+                                (`${currencyName}${Math.round(product.Price * currencyValue).toLocaleString()} `)}
+                  </span>
+        }
+    }
     return (
         <div className="col-6 col-sm-3">
 
@@ -36,12 +57,9 @@ export default ({product, currency}) => {
                         <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
                     </h6>
                     <p className="card-price">
-
-                        <span className={'price'}> {currencyName}{Math.round(product.discount_price * currencyValue)}</span>
-                        <span
-                            className={'price price--noSale'}>{currencyName}{Math.round(product.Price * currencyValue)}</span>
+                        {productPrice(product)}
                     </p>
-                    <p className="card-text"><b>Stock:</b> {product.inventory > 0 ? product.inventory : 'Sold Out'}</p>
+                    <p className="card-text d-none">Stock: {product.inventory > 0 ? 'in Stock' : 'Sold Out'}</p>
 
                     <AddToCart product={product}/>
                 </div>

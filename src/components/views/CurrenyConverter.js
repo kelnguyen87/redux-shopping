@@ -18,13 +18,11 @@ class CurrenyConverter extends Component {
                     onChange={this.currencyChangeHandler}
                 >
                     { Object.keys(this.props.exchangeRatesProps.rates).map((rateName, index) => (
-
                              <option
                                 key={index}
-                                value={this.props.exchangeRatesProps.rates[rateName]}
+                                value={rateName}
                             >
                                 {rateName}
-
                             </option>
                         ))
                     }

@@ -47,13 +47,20 @@ code {
 img {
   max-width: 100%;
 }
-.card-discount-price{
-  color: #F17E0A;
+.card-price{
+}
+.price{
+  color: #de740a;
+  font-size: 18px;
+  font-weight: 600;
+
+}
+.price--noSale{
   text-decoration: line-through;
   color: #999;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  margin-left: 3px;
+  margin-left: 5px;
 }
 nav.navbar{
   ul.navbar-nav{
@@ -72,8 +79,16 @@ nav.navbar{
 
 .card-body{
   padding: 0.8rem;
+  text-align: center;
   .card-text{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+  }
+}
+.card-title a{
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    color: #de740a;
   }
 }
 .previewCart-emty{

@@ -51,7 +51,7 @@ class Men extends Component {
     const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
 
     const productListMarkup = currentPageProducts.map(product =>
-        <ProductDetailSummary product={product} key={product.Id} cartItem={cart}/>
+        <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
     );
 
     // Passing AddToCartContext as it might be used at any deep level child.
@@ -91,7 +91,8 @@ const mapStateToProps = state => {
   } else {
     return {
       products: state.products.allProducts.filter(product => product.Category === 'men'),
-      cart: state.cart
+      usedCurrencyProp: state.cart.usedCurrency,
+      cart: state.cart.cartItem
     }
   }
 }

@@ -140,7 +140,6 @@ class CartList extends Component {
 
 const mapStateToProps = state => {
     const cartCount = countCart(state.cart.cartItem);
-    console.log(cartCount);
     return {
         productProps: state.products,
         vatProp: state.vat,

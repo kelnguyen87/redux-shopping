@@ -86,9 +86,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.cart);
     if (typeof state.products.allProducts === 'undefined') {
-        return {products: []};
+        return {
+            products: []
+        };
     } else {
         return {
             products: state.products.allProducts,
