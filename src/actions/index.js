@@ -53,3 +53,11 @@ export const closeMaxProductModal = () => {
     type: types.CLOSE_MAX_PRODUCT_MODAL
   }
 };
+
+export const changeCurrency = (currencyName) => {
+  // currency value can be fetched here from an external api and then passes to the store
+  return {
+    type: types.CHANGE_CURRENCY,
+    currencyName: currencyName
+  }
+};

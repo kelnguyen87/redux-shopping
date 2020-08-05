@@ -5,7 +5,25 @@ const initialState = {
     cartTotal: 0,
     vat: 16, //vat in percentage
     productMaxShowModal: false,
-    modalMessage: null
+    modalMessage: null,
+    // used currency should load with the default currency name and rate
+    usedCurrency: {"USD": 1,"symbol":"$"},
+    // exchange rates can be got from any api source
+    exchangeRates: {
+        "base": "USD",
+        "date": "2020-08-04",
+        "rates": {
+            "USD": 1,
+            "EUR": 0.8499787505,
+            "VND": 23176.50
+        }
+    },
+    // overkill but doing it for fun
+    currencySymbols: {
+        "USD": '$',
+        "EUR": '€',
+        "VND": 'đ'
+    }
 }
 const cartReducer = (state = initialState, action) => {
     let doesItemExist;
@@ -93,6 +111,25 @@ const cartReducer = (state = initialState, action) => {
         case types.CLOSE_MAX_PRODUCT_MODAL:
             return {
                 ...state, productMaxShowModal: !state.productMaxShowModal
+            }
+        case types.CHANGE_CURRENCY:
+            let currencyName= null,
+                currencyValue= null,
+                currencyObj = [];
+
+            let currencyNameSearch = Object.keys(state.exchangeRates.rates).filter(rate => rate === action.currencyName );
+
+            if(currencyNameSearch){
+                currencyName = action.currencyName;
+                currencyValue = state.exchangeRates.rates[currencyName];
+
+                currencyObj[currencyName] = currencyValue;
+                currencyObj['symbol'] = state.currencySymbols[currencyName];
+
+            }
+            return {
+                // just in case the currency is not found
+                ...state, usedCurrency: currencyNameSearch ? currencyObj : this.state.usedCurrency
             }
         default:
             return state;
