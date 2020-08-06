@@ -19,6 +19,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.getProducts();
+
     }
 
     getPagedData = () => {
@@ -45,48 +46,61 @@ class Home extends Component {
     }
 
     render() {
-        const totalProductCount = this.props.products.length;
-        const {cart} = this.props;
 
-        const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
-        const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
+        if(this.props.products=== 'undefined'){
+            const totalProductCount = this.props.products.length;
+            const {cart} = this.props;
 
-        const productListMarkup = currentPageProducts.map(product =>
-            <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
-        );
+            const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
+            const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
 
-        // Passing AddToCartContext as it might be used at any deep level child.
-        return (
-            <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-                <div className="container">
-                    <div className="row justify-content-between mb-3">
-                        <div className={'col-sm-6'}>
-                            <h3 className="center">Product List</h3>
+            const productListMarkup = currentPageProducts.map(product =>
+                <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
+            );
+
+            // Passing AddToCartContext as it might be used at any deep level child.
+            return (
+                <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
+                    <div className="container">
+                        <div className="row justify-content-between mb-3">
+                            <div className={'col-sm-6'}>
+                                <h3 className="center">Product List</h3>
+                            </div>
+                            <div className={'col-sm-6 text-right'}>
+                                <ProductListSummary currentPageItemStart={currentPageItemStart}
+                                                    currentPageItemEnd={currentPageItemEnd}
+                                                    totalProductCount={totalProductCount}/>
+                            </div>
                         </div>
-                        <div className={'col-sm-6 text-right'}>
-                            <ProductListSummary currentPageItemStart={currentPageItemStart}
-                                                currentPageItemEnd={currentPageItemEnd}
-                                                totalProductCount={totalProductCount}/>
+
+                        <div className="row">
+                            {productListMarkup}
                         </div>
+                        <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
+                                    totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
+                                    handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
+
+
                     </div>
 
-                    <div className="row">
-                        {productListMarkup}
+                </AddToCartContext.Provider>
+            );
+        }else{
+            return (
+                <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
+                    <div className="container">
+                        <h3>No Found Product</h3>
                     </div>
-                    <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
-                                totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
-                                handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
+                </AddToCartContext.Provider>
+            );
+        }
 
-
-                </div>
-
-            </AddToCartContext.Provider>
-        );
     }
 }
 
 const mapStateToProps = state => {
-    if (typeof state.products.allProducts === 'undefined') {
+    console.log(state);
+    if (typeof state.products === 'undefined') {
         return {
             products: []
         };
