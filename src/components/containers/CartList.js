@@ -64,7 +64,7 @@ class CartList extends Component {
         });
     }
 
-    cartItemsMarkUp = () => {
+  /*  cartItemsMarkUp = () => {
         if (this.props.cartTotalProp > 0) {
             this.props.cartProductsProp.map((productInCart,index) => {
                 return(
@@ -77,7 +77,7 @@ class CartList extends Component {
                 )
             })
         }
-    }
+    }*/
 
     render() {
 
@@ -86,9 +86,12 @@ class CartList extends Component {
                 key={productInCart.Id}
                 product={productInCart}
                 handleRemoveCartItem={this.handleRemoveCartItem}
-                counter={index + 1} handleChangeCartQuantity={this.handleChangeCartQuantity} />
+                counter={index + 1} handleChangeCartQuantity={this.handleChangeCartQuantity}
+                currency={this.props.usedCurrencyProp}
+            />
         );
 
+        const cartTotal = this.props.cartProductsProp.map(item => item.Price * item.Count).reduce((total, num) => (total + num), 0);
 
         return (
             <div className="container">
@@ -97,23 +100,26 @@ class CartList extends Component {
                     ?
                     <form id="cart-form" onSubmit={e => this.props.updateCart(e, this.state.cartForm)}>
                         <div className="table-responsive">
-                            <table className="table table-hover" ref={this.tableRef}>
+                            <table className="table" >
                                 <thead className="thead-light">
                                 <tr>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-
+                                    <th scope="col" width="200px">Quantity</th>
+                                    
                                 </tr>
                                 </thead>
+
                                 <tbody>
                                 {cartItemsMarkUp}
                                 </tbody>
+
                                 <CartTotal
-                                    cartTotal={this.props.cartTotal}
-                                    cartItemCount={this.props.cartItemCount}
+                                    subtotal={cartTotal}
+                                    cartItemCount={this.props.cartTotalProp}
                                     vat={this.props.vatProp}
+                                    currency={this.props.usedCurrencyProp}
                                 />
                             </table>
                         </div>
@@ -140,12 +146,13 @@ class CartList extends Component {
 
 const mapStateToProps = state => {
     const cartCount = countCart(state.cart.cartItem);
+
     return {
         productProps: state.products,
-        vatProp: state.vat,
+        vatProp: state.cart.vat,
         cartTotalProp: state.cart.cartTotal,
         cartProductsProp: state.cart.cartItem,
-        cartCount
+        usedCurrencyProp: state.cart.usedCurrency
     }
 }
 

@@ -36,7 +36,7 @@ export function updateCartAction(payload) {
 
 export function getProducts() {
   return {
-    type: types.FETCH_PRODUCTS,
+    type: types.GET_PRODUCTS,
   };
 }
 

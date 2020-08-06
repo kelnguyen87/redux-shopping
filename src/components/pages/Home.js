@@ -6,7 +6,8 @@ import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
 import ProductDetailSummary from '../views/ProductDetailSummary';
 import Pagination from '../helpers/Pagination';
-
+import Loading from "../helpers/Loading";
+import {getProducts} from "../../actions";
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,6 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.getProducts();
-
     }
 
     getPagedData = () => {
@@ -46,71 +46,57 @@ class Home extends Component {
     }
 
     render() {
+        const {loading} =  this.props;
+        if (loading) return <Loading />;
 
-        if(this.props.products=== 'undefined'){
-            const totalProductCount = this.props.products.length;
-            const {cart} = this.props;
+        const totalProductCount = this.props.products.length;
+        const {cart} = this.props;
 
-            const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
-            const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
+        const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
+        const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
+        const productListMarkup = currentPageProducts.map(product =>
+            <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
+        );
 
-            const productListMarkup = currentPageProducts.map(product =>
-                <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
-            );
-
-            // Passing AddToCartContext as it might be used at any deep level child.
-            return (
-                <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-                    <div className="container">
-                        <div className="row justify-content-between mb-3">
-                            <div className={'col-sm-6'}>
-                                <h3 className="center">Product List</h3>
-                            </div>
-                            <div className={'col-sm-6 text-right'}>
-                                <ProductListSummary currentPageItemStart={currentPageItemStart}
-                                                    currentPageItemEnd={currentPageItemEnd}
-                                                    totalProductCount={totalProductCount}/>
-                            </div>
+        // Passing AddToCartContext as it might be used at any deep level child.
+        return (
+            <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
+                <div className="container">
+                    <div className="row justify-content-between mb-3">
+                        <div className={'col-sm-6'}>
+                            <h3 className="center">Product List</h3>
                         </div>
-
-                        <div className="row">
-                            {productListMarkup}
+                        <div className={'col-sm-6 text-right'}>
+                            <ProductListSummary currentPageItemStart={currentPageItemStart}
+                                                currentPageItemEnd={currentPageItemEnd}
+                                                totalProductCount={totalProductCount}/>
                         </div>
-                        <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
-                                    totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
-                                    handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
-
-
                     </div>
-
-                </AddToCartContext.Provider>
-            );
-        }else{
-            return (
-                <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-                    <div className="container">
-                        <h3>No Found Product</h3>
+                    <div className="row">
+                        {productListMarkup}
                     </div>
-                </AddToCartContext.Provider>
-            );
-        }
+                    <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
+                                totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
+                                handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
+
+                </div>
+            </AddToCartContext.Provider>
+        );
 
     }
 }
 
 const mapStateToProps = state => {
-    console.log(state);
-    if (typeof state.products === 'undefined') {
-        return {
-            products: []
-        };
-    } else {
-        return {
-            products: state.products.allProducts,
-            usedCurrencyProp: state.cart.usedCurrency,
-            cart: state.cart.cartItem
-        }
+    return {
+        products: state.products.allProducts,
+        loading :state.products.loading,
+        usedCurrencyProp: state.cart.usedCurrency,
+        cart: state.cart.cartItem
     }
+}
+
+const mapDispatchToProps =  {
+     getProducts: getProducts
 }
 
 export default connect(mapStateToProps, actions)(Home);

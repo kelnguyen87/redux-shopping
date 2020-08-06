@@ -25,15 +25,8 @@ export function fetchProductDetails(productUrl) {
         });
 
 }
-/*
-export function fetchProductDetails(id) {
-  return axios.get("/data/ProductData.json")
-    .then(handleErrors)
-    .then(res => res.json())
-    .then(json => {
-      return json.Products.filter(product => product.Id === id);
-    });
-}*/
+
+
 
 // Handle HTTP errors since fetch won't.
 function handleErrors(response) {

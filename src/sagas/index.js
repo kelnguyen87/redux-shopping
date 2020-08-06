@@ -1,15 +1,26 @@
+import {delay} from 'redux-saga';
+
 import { put, takeLatest, all } from 'redux-saga/effects';
+import axios from 'axios';
 
-function* fetchNews() {
+function* fetchProduct() {
+  yield delay(3000);
+  const json = yield axios.get('/data/ProductData.json')
+      .then(response => {
+        return response.data.Products;
+      })
+      .catch(error => {
+        return error;
+      });
 
-  const json = yield fetch('/data/ProductData.json')
-    .then(response => response.data.Products);
+  yield put({ type: "FETCH_PRODUCTS", products: json || [{ error: json.message }] });
 
-  yield put({ type: "FETCH_PRODUCTS_RECEIVED", json: json.articles || [{ error: json.message }] });
 }
 
 function* actionWatcher() {
-  yield takeLatest('FETCH_PRODUCTS', fetchNews)
+  yield takeLatest('GET_PRODUCTS', fetchProduct)
+
+
 }
 
 

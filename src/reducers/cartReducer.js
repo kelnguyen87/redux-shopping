@@ -3,7 +3,7 @@ import * as types from '../actions/action-types';
 const initialState = {
     cartItem: [],
     cartTotal: 0,
-    vat: 16, //vat in percentage
+    vat: 10, //vat in percentage
     productMaxShowModal: false,
     modalMessage: null,
     // used currency should load with the default currency name and rate
