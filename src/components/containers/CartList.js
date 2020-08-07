@@ -51,7 +51,7 @@ class CartList extends Component {
                             <button className="btn  btn-secondary" onClick={onClose}>No</button>
                             <button className="btn  btn-secondary" id="btn-confirm-delete-cart"
                                     onClick={() => {
-                                        this.props.removeFromCart(product.Id);
+                                        this.props.removeFromCart(product.Id, product.Count);
                                         onClose();
                                     }}
                             >
@@ -64,21 +64,6 @@ class CartList extends Component {
         });
     }
 
-  /*  cartItemsMarkUp = () => {
-        if (this.props.cartTotalProp > 0) {
-            this.props.cartProductsProp.map((productInCart,index) => {
-                return(
-                    <CartItem
-                        key={productInCart.Id}
-                        product={productInCart}
-                        cartFormElement={this.state.cartForm[productInCart.Id]}
-                        handleRemoveCartItem={this.handleRemoveCartItem}
-                        counter={index + 1} handleChangeCartQuantity={this.handleChangeCartQuantity} />
-                )
-            })
-        }
-    }*/
-
     render() {
 
         const cartItemsMarkUp = this.props.cartProductsProp.map((productInCart, index) =>
@@ -86,7 +71,8 @@ class CartList extends Component {
                 key={productInCart.Id}
                 product={productInCart}
                 handleRemoveCartItem={this.handleRemoveCartItem}
-                counter={index + 1} handleChangeCartQuantity={this.handleChangeCartQuantity}
+                counter={index + 1}
+                handleChangeCartQuantity={this.handleChangeCartQuantity}
                 currency={this.props.usedCurrencyProp}
             />
         );
@@ -107,7 +93,7 @@ class CartList extends Component {
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col" width="200px">Quantity</th>
-                                    
+
                                 </tr>
                                 </thead>
 
@@ -125,9 +111,13 @@ class CartList extends Component {
                         </div>
 
                         <div className="row justify-content-end container-proceed-cart">
-                            <div className="col-lg-3 col-md-5 col-sm-6 col-xs-8">
+                            <div className="col-lg-4 col-md-5 col-sm-6 col-xs-8">
+                                <div className="btn-group" role="group" aria-label="Clear Cart">
+                                    <button onClick={this.props.clearFormCart} type="submit" className="btn btn-outline-primary">Clear cart</button>
+                                </div>
+
                                 <div className="btn-group" role="group" aria-label="Update Cart">
-                                    <button type="submit" className="btn btn-primary">Update Cart</button>
+                                    <button type="submit" className="btn btn-outline-primary">Update Cart</button>
                                 </div>
                                 <div className="btn-group" role="group" aria-label="Checkout">
                                     <button type="button" className="btn btn-primary">Checkout</button>
@@ -145,8 +135,7 @@ class CartList extends Component {
 }
 
 const mapStateToProps = state => {
-    const cartCount = countCart(state.cart.cartItem);
-
+    //const cartCount = countCart(state.cart.cartItem);
     return {
         productProps: state.products,
         vatProp: state.cart.vat,

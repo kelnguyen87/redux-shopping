@@ -3,13 +3,12 @@ import { Link  } from 'react-router-dom';
 
 
 export default (props) => {
-    const {cartItems,cartCount,cartTotal} = props;
+    const {cartItems,cartTotal} = props;
    // console.log(props);
     const [listStatus, setlistStatus] = useState(false);
     const toggleList = () => {
         setlistStatus(!listStatus);
     }
-    //console.log(cartItems);
 
     const cartItemsMarkUp = cartItems.map((product, index) =>{
         return (
@@ -37,7 +36,7 @@ export default (props) => {
     <div className="dropdown">
 
       <Link id="nav-view-cart-link" onClick={ toggleList} to={'/'} className="btn btn-secondary">
-        Cart (items { cartTotal }) - ${ cartCount.cartTotal }
+        Cart (items { cartTotal })
       </Link>
         {listStatus && (
             <div className="dropdown-menu show dropdown-previewcart">

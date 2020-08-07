@@ -4,7 +4,7 @@ import { put, takeLatest, all } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchProduct() {
-  yield delay(3000);
+  //yield delay(1000);
   const json = yield axios.get('/data/ProductData.json')
       .then(response => {
         return response.data.Products;

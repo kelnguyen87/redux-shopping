@@ -74,12 +74,11 @@ const cartReducer = (state = initialState, action) => {
 
 
         case types.REMOVE_FROM_CART:
-             newCartItem = state.cartItem.find( product => product.Id !== action.productId);
-
+            const  newCart = state.cartItem.filter( product => product.Id !== action.productId);
             return {
                 ...state,
                 cartTotal: state.cartTotal - action.productCount,
-                cartItem: newCartItem
+                cartItem: newCart
             }
         case  types.CLEAR_CART:
             return{
