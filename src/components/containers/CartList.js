@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import { findDOMNode } from 'react-dom';
+import {Link} from 'react-router-dom';
 import {confirmAlert} from 'react-confirm-alert';
 import {connect} from 'react-redux'
 import $ from 'jquery';
@@ -9,38 +9,19 @@ import {countCart} from '../../lib/cartLib';
 import * as actions from '../../actions';
 import CartItem from '../views/CartItem';
 import CartTotal from '../views/CartTotal';
-import {highLightCartButton} from '../../lib/cartLib';
 
 class CartList extends Component {
     constructor(props) {
         super(props);
-
-        /*const cartForm = {};
-        this.props.cart.map((product, index) =>
-            cartForm[product.Id] = {Id: product.Id, quantity: product.quantity}
-        );
-        this.state = {cartForm};*/
-
-        //this.tableRef = React.createRef();
     }
 
-    handleChangeCartQuantity = (e, productId) => {
-        const cartForm = Object.assign({}, this.state.cartForm);
-        cartForm[productId].quantity = parseInt(e.target.value);
-        this.setState(cartForm);
+    handleChangeCartQuantity = (field_value, productId) => {
+        if(field_value > 0) this.props.updateCart(field_value, productId);
+
     }
 
-    // Focus the clicked row.
-    handleClickRow = (productId) => {
-        //const el = findDOMNode(this.tableRef.current);
-        $(this.tableRef.current).find('tr').each((i, el) => {
-            $(el).removeClass('table-active');
-        });
-        $(this.tableRef.current).find('tr.row-' + productId).addClass('table-active');
-    }
 
     handleRemoveCartItem = (product) => {
-
         confirmAlert({
             customUI: ({onClose}) => {
                 return (
@@ -65,14 +46,13 @@ class CartList extends Component {
     }
 
     render() {
-
         const cartItemsMarkUp = this.props.cartProductsProp.map((productInCart, index) =>
             <CartItem
                 key={productInCart.Id}
                 product={productInCart}
                 handleRemoveCartItem={this.handleRemoveCartItem}
+                handleChangeCartQuantity={(event) => this.handleChangeCartQuantity(event.target.value, productInCart.Id)}
                 counter={index + 1}
-                handleChangeCartQuantity={this.handleChangeCartQuantity}
                 currency={this.props.usedCurrencyProp}
             />
         );
@@ -84,7 +64,7 @@ class CartList extends Component {
                 <h3 className="center my-cart">My Cart ({this.props.cartTotalProp})</h3>
                 {this.props.cartTotalProp > 0
                     ?
-                    <form id="cart-form" onSubmit={e => this.props.updateCart(e, this.state.cartForm)}>
+                    <form id="cart-form" >
                         <div className="table-responsive">
                             <table className="table" >
                                 <thead className="thead-light">
@@ -111,13 +91,13 @@ class CartList extends Component {
                         </div>
 
                         <div className="row justify-content-end container-proceed-cart">
-                            <div className="col-lg-4 col-md-5 col-sm-6 col-xs-8">
+                            <div className="col-lg-5 col-md-5 col-sm-6 col-xs-8">
                                 <div className="btn-group" role="group" aria-label="Clear Cart">
                                     <button onClick={this.props.clearFormCart} type="submit" className="btn btn-outline-primary">Clear cart</button>
                                 </div>
 
                                 <div className="btn-group" role="group" aria-label="Update Cart">
-                                    <button type="submit" className="btn btn-outline-primary">Update Cart</button>
+                                    <Link to={'/'} className="btn btn-outline-primary">Continue shopping</Link>
                                 </div>
                                 <div className="btn-group" role="group" aria-label="Checkout">
                                     <button type="button" className="btn btn-primary">Checkout</button>

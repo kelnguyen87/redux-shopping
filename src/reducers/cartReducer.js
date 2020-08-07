@@ -51,15 +51,17 @@ const cartReducer = (state = initialState, action) => {
                         modalMessage = 'Sorry! Your product order cannot exceed our stock';
                     }
                 }else{
-
-                    newCartItem = state.cartItem.concat({Id: action.productId,Title:action.Title,Price:action.Price, ImageUrl:action.ImageUrl, Count: 1});
-                    /*newCartItem = {...state.cartItem,
-                        Id:action.productId,
-                        Title:action.Title,
-                        Price:action.Price,
-                        ImageUrl:action.ImageUrl,
-                        count: 1
-                    }*/
+                   // newCartItem = state.cartItem.concat({Id: action.productId,Title:action.Title,Price:action.Price, ImageUrl:action.ImageUrl, Count: 1});
+                    newCartItem = [
+                        ...state.cartItem,
+                        {
+                            Id:action.productId,
+                            Title:action.Title,
+                            Price:action.Price,
+                            ImageUrl:action.ImageUrl,
+                            Count: 1
+                        }
+                    ]
                     newCartTotal = state.cartTotal + 1;
                 }
             }
@@ -74,11 +76,11 @@ const cartReducer = (state = initialState, action) => {
 
 
         case types.REMOVE_FROM_CART:
-            const  newCart = state.cartItem.filter( product => product.Id !== action.productId);
+              let CartItem = state.cartItem.filter( product => product.Id !== action.productId);
             return {
                 ...state,
                 cartTotal: state.cartTotal - action.productCount,
-                cartItem: newCart
+                cartItem: CartItem
             }
         case  types.CLEAR_CART:
             return{
@@ -87,26 +89,21 @@ const cartReducer = (state = initialState, action) => {
                 cartItem: []
             }
         case types.UPDATE_CART:
-            const cartFormArr = Object.keys(action.payload).map((key, index) => {
-                return action.payload[key];
-            });
+            let product = state.cartItem.find(product => product.Id === action.productId)
+            let cartTotal = state.cartTotal;
 
-            doesItemExist = false;
-
-            const newProdCartState = state.map((item) => {
-                let itemFound = cartFormArr.find((element) => element.Id === item.Id);
-                if (itemFound) {
-                    item.quantity = itemFound.quantity;
-                    doesItemExist = true;
-                }
-                return item;
-            });
-
-            if (doesItemExist) {
-                return newProdCartState;
+            let newCartItemUpdate = state.cartItem;
+            if(product){
+                cartTotal = state.cartTotal - (product.Count - action.newCountValue);
+                newCartItemUpdate = state.cartItem.map(
+                    product => product.Id === action.productId ? {...product,Count: action.newCountValue}: product
+                )
             }
-
-            return state;
+            return {
+                ...state,
+                cartItem: newCartItemUpdate,
+                cartTotal: cartTotal
+            }
         case types.CLOSE_MAX_PRODUCT_MODAL:
             return {
                 ...state, productMaxShowModal: !state.productMaxShowModal

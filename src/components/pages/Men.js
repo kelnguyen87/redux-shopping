@@ -1,99 +1,30 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {connect} from 'react-redux';
-
-import {AddToCartContext} from '../../contexts/AddToCartContext';
 import * as actions from '../../actions';
-import ProductListSummary from '../views/ProductListSummary';
-import ProductDetailSummary from '../views/ProductDetailSummary';
-import Pagination from '../helpers/Pagination';
+import ProductList from "../containers/ProductList";
 
-class Men extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-      currentPage: 1,
-      perPage: 12
-    }
-  }
+const Men = (props) => {
+  useEffect(() => {props.getProducts();}  ,[]);
 
-  componentDidMount() {
-    this.props.getProducts();
-  }
-
-  getPagedData = () => {
-    const currentPageItemStart = (this.state.currentPage - 1) * this.state.perPage;
-    const currentPageItemEnd = currentPageItemStart + this.state.perPage;
-    return [currentPageItemStart, currentPageItemEnd];
-  }
-
-  handleThisPage = (number) => {
-    this.setState({currentPage: number});
-  }
-
-  handlePreviousPage = () => {
-    if (this.state.currentPage > 0) {
-      this.setState({currentPage: (this.state.currentPage - 1)});
-    }
-  }
-
-  handleNextPage = () => {
-    const lastPage = Math.ceil(this.props.products.length / this.state.perPage);
-    if (this.state.currentPage < lastPage) {
-      this.setState({currentPage: (this.state.currentPage + 1)});
-    }
-  }
-
-  render() {
-    const totalProductCount = this.props.products.length;
-    const {cart} = this.props;
-    const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
-    const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
-
-    const productListMarkup = currentPageProducts.map(product =>
-        <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
-    );
-
-    // Passing AddToCartContext as it might be used at any deep level child.
-    return (
-        <AddToCartContext.Provider value={{action: this.props.addToCartAction}}>
-          <div className="container">
-            <div className="row justify-content-between mb-3">
-              <div className={'col-sm-6'}>
-                <h3 className="center">Category Men</h3>
-              </div>
-              <div className={'col-sm-6 text-right'}>
-                <ProductListSummary currentPageItemStart={currentPageItemStart}
-                                    currentPageItemEnd={currentPageItemEnd}
-                                    totalProductCount={totalProductCount}/>
-              </div>
-            </div>
-
-            <div className="row">
-              {productListMarkup}
-            </div>
-            <Pagination currentPage={this.state.currentPage} perPage={this.state.perPage}
-                        totalProductCount={totalProductCount} handlePreviousPage={this.handlePreviousPage}
-                        handleThisPage={this.handleThisPage} handleNextPage={this.handleNextPage}/>
-
-
-          </div>
-
-        </AddToCartContext.Provider>
-    );
-  }
+  return(
+        <ProductList
+            products={props.products}
+            loading={props.loading}
+            usedCurrencyProp={props.usedCurrencyProp}
+            cart={props.cart}
+            pageName={props.pageName}
+            addToCartAction={props.addToCartAction}
+        />
+  );
 }
 
-const mapStateToProps = state => {
 
-  if (typeof state.products.allProducts === 'undefined') {
-    return {products: []};
-  } else {
-    return {
-      products: state.products.allProducts.filter(product => product.Category === 'men'),
-      usedCurrencyProp: state.cart.usedCurrency,
-      cart: state.cart.cartItem
-    }
+const mapStateToProps = state => {
+  return {
+    products: state.products.allProducts.filter(product => product.Category === 'men'),
+    loading :state.products.loading,
+    usedCurrencyProp: state.cart.usedCurrency,
+    cart: state.cart.cartItem
   }
 }
 

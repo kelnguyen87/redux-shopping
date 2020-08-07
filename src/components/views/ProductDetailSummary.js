@@ -56,10 +56,12 @@ export default ({product, currency}) => {
                     <h6 className="card-title">
                         <Link to={"/product-detail/" + product.Id}>{product.Title}</Link>
                     </h6>
+                    <p className="card-text ">Category: {product.Category}</p>
                     <p className="card-price">
                         {productPrice(product)}
                     </p>
-                    <p className="card-text d-none">Stock: {product.inventory > 0 ? 'in Stock' : 'Sold Out'}</p>
+
+                    <p className="card-text d-none">Stock: {product.inventory > 0 ? product.inventory : 'Sold Out'}</p>
 
                     <AddToCart product={product}/>
                 </div>

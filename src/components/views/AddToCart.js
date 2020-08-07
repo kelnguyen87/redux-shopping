@@ -6,12 +6,10 @@ import * as actions from "../../actions";
 
 
 class AddToCart extends Component {
-
     handleAddToCart = () => {
         highLightCartButton();
         const {product} = this.props;
         this.context.action(product);
-
     }
 
     render() {

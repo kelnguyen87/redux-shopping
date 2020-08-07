@@ -12,10 +12,12 @@ const productsReducer = (state = initialState, action) => {
     case types.FETCH_PRODUCTS:
       const allProducts = action.products;
       return { ...state, ...{ allProducts }, loading: false };
+    case types.GET_PRODUCTS_DETAIL:
+      return { ...state, loading: true };
 
     case types.FETCH_PRODUCT_DETAILS:
-      const productDetails = action.payload[0];
-      return { ...state, ...{ productDetails } };
+      const productDetails = action.productDetails;
+      return { ...state, ...{ productDetails }, loading: false };
 
     default:
       return state;

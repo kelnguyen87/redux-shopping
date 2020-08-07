@@ -27,10 +27,11 @@ export const clearCart = () => {
   }
 };
 
-export function updateCartAction(payload) {
+export function updateCartAction(value, productId) {
   return {
     type: types.UPDATE_CART,
-    payload
+    newCountValue: value,
+    productId: productId,
   };
 }
 
@@ -42,8 +43,8 @@ export function getProducts() {
 
 export function getProductDetails(productId) {
   return {
-    type: types.FETCH_PRODUCT_DETAILS,
-    payload: fetchProductDetails(productId)
+    type: types.GET_PRODUCTS_DETAIL,
+    productId: productId
   };
 }
 

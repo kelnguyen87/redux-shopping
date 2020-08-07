@@ -49,7 +49,6 @@ import Modal from '../../components/UI/Modal/Modal';
         {componentRendered}
 
         {
-
           this.props.showModalProp &&
           <Modal closeModalClick={this.props.closeModalProp} showModal={this.props.showModalProp}>
             {this.props.modalMessageProp}

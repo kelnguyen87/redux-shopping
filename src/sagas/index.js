@@ -1,10 +1,10 @@
 import {delay} from 'redux-saga';
 
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, all,takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* fetchProduct() {
-  //yield delay(1000);
+function* fetchGetProduct() {
+  yield delay(1000);
   const json = yield axios.get('/data/ProductData.json')
       .then(response => {
         return response.data.Products;
@@ -17,9 +17,26 @@ function* fetchProduct() {
 
 }
 
-function* actionWatcher() {
-  yield takeLatest('GET_PRODUCTS', fetchProduct)
+function* fetchProductDetail(action) {
+    yield delay(1000);
+    const json = yield axios.get('/data/ProductData.json')
+        .then(response => {
+            const ProductDetail = response.data.Products.find(product => {
+                return product.Id == action.productId
+            });
+            return ProductDetail;
+        })
+        .catch(error => {
+            return error;
+        });
+    console.log('ProductDetail',json);
+    yield put({ type: "FETCH_PRODUCT_DETAILS", productDetails: json || [{ error: json.message }] });
 
+}
+
+function* actionWatcher() {
+    yield takeLatest('GET_PRODUCTS', fetchGetProduct)
+    yield takeEvery('GET_PRODUCTS_DETAIL', fetchProductDetail)
 
 }
 

@@ -6,6 +6,7 @@ export const CLEAR_CART = 'CLEAR_CART';
 // Products
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const GET_PRODUCTS_DETAIL = 'GET_PRODUCTS_DETAIL';
 export const FETCH_PRODUCT_DETAILS = 'FETCH_PRODUCT_DETAILS';
 
 // Toast
