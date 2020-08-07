@@ -12,32 +12,32 @@ export default (props) =>{
 
     return <tbody className="thead-light">
         <tr>
-            <td scope="col"></td>
-            <td scope="col"></td>
-            <td scope="col">
+            <td ></td>
+            <td ></td>
+            <td >
                 Subtotal
             </td>
-            <td scope="col" className={'text-right'}>
+            <td  className={'text-right'}>
 
                      {currencyName === 'đ' ? (`${subtotal.toLocaleString()}${currencyName}`) : `${currencyName}${subtotal.toLocaleString()}`}
 
             </td>
         </tr>
         <tr>
-            <td scope="col"></td>
-            <td scope="col"></td>
-            <td scope="col">
+            <td ></td>
+            <td ></td>
+            <td >
                 VAT
             </td>
-            <td scope="col" className={'text-right'}> {currencyName === 'đ' ? (`${vat.toLocaleString()}${currencyName}`) : `${currencyName}${vat.toLocaleString()}`}</td>
+            <td  className={'text-right'}> {currencyName === 'đ' ? (`${vat.toLocaleString()}${currencyName}`) : `${currencyName}${vat.toLocaleString()}`}</td>
         </tr>
         <tr>
-            <td scope="col"></td>
-            <td scope="col"></td>
-            <td scope="col">
+            <td ></td>
+            <td ></td>
+            <td >
                 <h4 className={'shop-cart-total'}>Total</h4>
             </td>
-            <td scope="col" className={'text-right'}>
+            <td  className={'text-right'}>
                 <h4 className={'shop-cart-total'}>
                 {currencyName === 'đ' ? (`${totalCost.toLocaleString()}${currencyName}`) : `${currencyName}${totalCost.toLocaleString()}`}
                 </h4>

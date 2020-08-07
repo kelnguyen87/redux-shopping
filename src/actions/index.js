@@ -1,5 +1,4 @@
 import * as types from './action-types';
-import { fetchProducts, fetchProductDetails } from '../lib/fetchProducts';
 
 export function addToCartAction(product) {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home';
 import ShoppingCart from './ShoppingCart';
-import ProductDetailsPage from './ProductDetailsPage';
+import ProductDetails from './ProductDetails';
 import PageNotFound from '../views/PageNotFound';
 import Header from '../views/Header';
 import NavContainer from '../containers/NavContainer';
@@ -12,6 +12,7 @@ import Sale from "./Sale";
 import {connect} from "react-redux";
 import {closeMaxProductModal} from "../../actions";
 import Modal from '../../components/UI/Modal/Modal';
+import Footer from "../views/Footer";
 
  class BasePage extends Component {
   render() {
@@ -32,8 +33,8 @@ import Modal from '../../components/UI/Modal/Modal';
       case "sale":
         componentRendered = <Sale {...this.props}/>;
         break;
-      case "ProductDetailsPage":
-        componentRendered = <ProductDetailsPage {...this.props}/>;
+      case "ProductDetails":
+        componentRendered = <ProductDetails {...this.props}/>;
         break;
       case "ShoppingCart":
         componentRendered = <ShoppingCart {...this.props}/>;
@@ -47,7 +48,7 @@ import Modal from '../../components/UI/Modal/Modal';
         <Header />
         <NavContainer />
         {componentRendered}
-
+        <Footer />
         {
           this.props.showModalProp &&
           <Modal closeModalClick={this.props.closeModalProp} showModal={this.props.showModalProp}>

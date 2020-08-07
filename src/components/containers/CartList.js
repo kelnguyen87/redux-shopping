@@ -2,18 +2,14 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {confirmAlert} from 'react-confirm-alert';
 import {connect} from 'react-redux'
-import $ from 'jquery';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import {countCart} from '../../lib/cartLib';
 import * as actions from '../../actions';
 import CartItem from '../views/CartItem';
 import CartTotal from '../views/CartTotal';
 
 class CartList extends Component {
-    constructor(props) {
-        super(props);
-    }
+
 
     handleChangeCartQuantity = (field_value, productId) => {
         if(field_value > 0) this.props.updateCart(field_value, productId);

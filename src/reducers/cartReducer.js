@@ -26,7 +26,6 @@ const initialState = {
     }
 }
 const cartReducer = (state = initialState, action) => {
-    let doesItemExist;
     switch (action.type) {
         case types.ADD_TO_CART:
             let newCartItem = state.cartItem;

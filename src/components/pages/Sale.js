@@ -1,10 +1,13 @@
-import React, {Component, useEffect} from 'react';
-import {connect} from 'react-redux';
+import React, { useEffect} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import * as actions from '../../actions';
 import ProductList from "../containers/ProductList";
 
 const Sale = (props) => {
-  useEffect(() => {props.getProducts();}  ,[]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.getProducts())
+  }, [dispatch]);
 
   return(
         <ProductList

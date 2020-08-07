@@ -16,7 +16,7 @@ class AddToCart extends Component {
         const {product} = this.props;
         if (product.inventory < 1) return (
             <button type="button" className="btn  btn-secondary btn-block"
-                    disabled>Add to Cart
+                    disabled>Sold Out
             </button>
         )
         return (

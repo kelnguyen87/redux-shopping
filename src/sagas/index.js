@@ -22,14 +22,14 @@ function* fetchProductDetail(action) {
     const json = yield axios.get('/data/ProductData.json')
         .then(response => {
             const ProductDetail = response.data.Products.find(product => {
-                return product.Id == action.productId
+                return product.Id.toString() === action.productId.toString()
             });
             return ProductDetail;
         })
         .catch(error => {
             return error;
         });
-    console.log('ProductDetail',json);
+
     yield put({ type: "FETCH_PRODUCT_DETAILS", productDetails: json || [{ error: json.message }] });
 
 }

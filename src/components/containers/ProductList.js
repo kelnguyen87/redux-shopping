@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
 import {AddToCartContext} from '../../contexts/AddToCartContext';
-import * as actions from '../../actions';
 import ProductListSummary from '../views/ProductListSummary';
-import ProductDetailSummary from '../views/ProductDetailSummary';
+import ProductCard from '../views/ProductCard';
 import Pagination from '../helpers/Pagination';
 import Loading from "../helpers/Loading";
 
@@ -46,12 +44,11 @@ export default class ProductList extends Component {
         if (loading) return <Loading />;
 
         const totalProductCount = this.props.products.length;
-        const {cart} = this.props;
 
         const [currentPageItemStart, currentPageItemEnd] = this.getPagedData();
         const currentPageProducts = this.props.products.slice(currentPageItemStart, currentPageItemEnd);
         const productListMarkup = currentPageProducts.map(product =>
-            <ProductDetailSummary product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
+            <ProductCard product={product} key={product.Id}  currency={this.props.usedCurrencyProp}/>
         );
 
         // Passing AddToCartContext as it might be used at any deep level child.
